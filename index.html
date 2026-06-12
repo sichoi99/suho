@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Necessity Is the Mother of Invention — 지문 암기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 메인 화면 -->
+  <div id="mainScreen" class="main-screen">
+    <div class="main-screen-inner">
+      <p class="main-screen-label">지문 암기 프로그램</p>
+      <h1 class="main-screen-title">Reading</h1>
+      <div class="main-passage-btns">
+        <button type="button" class="main-enter-btn" data-passage="invention">
+          Necessity Is the Mother of Invention
+        </button>
+        <button type="button" class="main-enter-btn" data-passage="shopper">
+          Be a Smart Shopper
+        </button>
+      </div>
+      <p class="main-screen-game" id="mainScreenGame" hidden></p>
+      <p class="main-screen-hint">지문을 선택해 학습을 시작하세요</p>
+    </div>
+  </div>
+
+  <!-- 학습 화면 -->
+  <div id="appScreen" class="app-screen" hidden>
+  <header class="header">
+    <div class="header-inner">
+      <button type="button" class="btn-home" id="goHome" aria-label="메인으로">← 메인</button>
+      <div class="header-content">
+        <p class="header-label">Reading</p>
+        <h1 id="appTitle">Necessity Is the Mother of Invention</h1>
+        <p class="subtitle" id="appSubtitle"></p>
+        <p class="header-game" id="headerGame">Lv.1 · 0 XP</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-mode="scramble" role="tab" aria-selected="true">단어 배열</button>
+    <button class="tab" data-mode="cloze" role="tab">빈칸 채우기</button>
+    <button class="tab" data-mode="read" role="tab">읽기</button>
+    <button class="tab" data-mode="vocab" role="tab" id="vocabTab" hidden>어휘 암기</button>
+    <button class="tab tab-star" data-mode="vocab-star" role="tab" id="vocabStarTab" hidden>★ 별표</button>
+  </nav>
+
+  <main class="main">
+    <aside class="sidebar">
+      <section class="panel game-panel">
+        <h2>게임</h2>
+        <div class="level-row">
+          <span class="level-badge">Lv.<span id="gameLevel">1</span></span>
+          <span class="game-xp-text" id="gameXpText">0 / 100 XP</span>
+        </div>
+        <div class="xp-bar-wrap">
+          <div class="xp-bar" id="xpBar"></div>
+        </div>
+        <p class="combo-display" id="comboDisplay">🔥 콤보 <strong id="comboCount">0</strong></p>
+        <div class="time-challenge-box">
+          <button type="button" class="btn-secondary btn-block" id="startTimeChallenge">
+            타임 챌린지 (3분·5문장)
+          </button>
+          <div id="timeChallengeActive" class="time-challenge-active" hidden>
+            <p class="challenge-timer">⏱ <span id="challengeTimer">3:00</span></p>
+            <p class="challenge-progress">정답 <span id="challengeProgress">0</span> / 5</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="progress-panel-header">
+          <h2>진행 상황</h2>
+          <button type="button" class="btn-reset" id="resetProgress">리셋</button>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="progress-text" id="progressText">0 / 28 문장 완료</p>
+        <div class="progress-dots" id="progressDots" aria-label="문장별 완료 표시"></div>
+      </section>
+
+      <section class="panel filter-panel" id="sentenceFilterPanel">
+        <h2>구간 선택</h2>
+        <div class="filter-btns" id="filterBtns"></div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="keyOnly">
+          핵심 문장만 (노란색)
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="starOnly">
+          ★ 별표만 보기
+        </label>
+      </section>
+
+      <section class="panel filter-panel" id="vocabFilterPanel" hidden>
+        <h2>어휘 구간</h2>
+        <div class="filter-btns" id="vocabFilterBtns"></div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="vocabStarOnly">
+          ★ 별표만 보기
+        </label>
+      </section>
+
+      <section class="panel options-panel" id="readOptions" hidden>
+        <h2>읽기 옵션</h2>
+        <label class="checkbox-label">
+          <input type="checkbox" id="hideEnglish">
+          영문 숨기기
+        </label>
+      </section>
+    </aside>
+
+    <div class="content">
+      <div id="xpToast" class="xp-toast" hidden></div>
+      <div id="comboPopup" class="combo-popup" hidden></div>
+
+      <!-- 단어 배열 -->
+      <section id="mode-scramble" class="mode-panel active">
+        <div class="practice-card">
+          <div class="practice-meta-row">
+            <p class="practice-meta" id="scrambleMeta">01 · Bicycle</p>
+            <button type="button" class="star-btn" id="scrambleStar" aria-label="별표">☆</button>
+          </div>
+          <p class="practice-prompt">단어 사이의 빈 칸에 끌어 넣거나, 클릭해 맨 뒤에 추가하세요.</p>
+          <p class="scramble-check-count">확인 <strong id="scrambleCheckCount">0</strong>회</p>
+          <div class="scramble-bank" id="scrambleBank"></div>
+          <div class="scramble-answer" id="scrambleAnswer"></div>
+          <div class="practice-actions">
+            <button type="button" class="btn-secondary" id="scrambleReset">다시 섞기</button>
+            <button type="button" class="btn-primary" id="scrambleCheck">확인</button>
+            <button type="button" class="btn-nav" id="scramblePrev" aria-label="이전 문장">←</button>
+            <button type="button" class="btn-nav" id="scrambleNext" aria-label="다음 문장">→</button>
+          </div>
+          <div id="scrambleFeedback" class="feedback" hidden></div>
+        </div>
+      </section>
+
+      <!-- 빈칸 채우기 -->
+      <section id="mode-cloze" class="mode-panel">
+        <div class="practice-card">
+          <div class="practice-meta-row">
+            <p class="practice-meta" id="clozeMeta">01 · Bicycle</p>
+            <button type="button" class="star-btn" id="clozeStar" aria-label="별표">☆</button>
+          </div>
+          <p class="cloze-sentence" id="clozeSentence"></p>
+          <div class="practice-actions">
+            <button type="button" class="btn-primary" id="clozeCheck">확인</button>
+            <button type="button" class="btn-secondary" id="clozeReveal">정답 보기</button>
+            <button type="button" class="btn-nav" id="clozePrev" aria-label="이전 문장">←</button>
+            <button type="button" class="btn-nav" id="clozeNext" aria-label="다음 문장">→</button>
+          </div>
+          <div id="clozeFeedback" class="feedback" hidden></div>
+        </div>
+      </section>
+
+      <!-- 읽기 -->
+      <section id="mode-read" class="mode-panel">
+        <div id="readList" class="sentence-list"></div>
+      </section>
+
+      <!-- 어휘 암기 -->
+      <section id="mode-vocab" class="mode-panel">
+        <div class="practice-card">
+          <div class="vocab-view-tabs">
+            <button type="button" class="vocab-view-tab active" data-vocab-view="quiz">퀴즈</button>
+            <button type="button" class="vocab-view-tab" data-vocab-view="write">영작</button>
+            <button type="button" class="vocab-view-tab" data-vocab-view="card">카드</button>
+            <button type="button" class="vocab-view-tab" data-vocab-view="list">목록</button>
+          </div>
+
+          <div id="vocabQuizView" class="vocab-view active">
+            <div class="practice-meta-row">
+              <p class="practice-meta" id="vocabMeta">01 · allowance</p>
+              <button type="button" class="star-btn" id="vocabQuizStar" aria-label="별표">☆</button>
+            </div>
+            <p class="practice-prompt">뜻을 고르세요.</p>
+            <p class="vocab-word" id="vocabWord">allowance</p>
+            <p class="vocab-definition" id="vocabDefinition" hidden></p>
+            <div class="quiz-choices" id="vocabChoices"></div>
+            <div class="practice-actions">
+              <button type="button" class="btn-nav" id="vocabPrev" aria-label="이전 단어">←</button>
+              <button type="button" class="btn-nav" id="vocabNext" aria-label="다음 단어">→</button>
+            </div>
+            <div id="vocabFeedback" class="feedback" hidden></div>
+          </div>
+
+          <div id="vocabWriteView" class="vocab-view">
+            <div class="practice-meta-row">
+              <p class="practice-meta" id="vocabWriteMeta">01 · Watch and Talk</p>
+              <button type="button" class="star-btn" id="vocabWriteStar" aria-label="별표">☆</button>
+            </div>
+            <p class="practice-prompt">뜻을 보고 영어 단어·표현을 입력하세요.</p>
+            <p class="vocab-meaning-prompt" id="vocabMeaningPrompt">용돈, 수당</p>
+            <p class="vocab-definition" id="vocabWriteDefinition" hidden></p>
+            <input type="text" class="vocab-write-input" id="vocabWriteInput" placeholder="영어 단어 입력" autocomplete="off" spellcheck="false">
+            <div class="practice-actions">
+              <button type="button" class="btn-primary" id="vocabWriteCheck">확인</button>
+              <button type="button" class="btn-secondary" id="vocabWriteReveal">정답 보기</button>
+              <button type="button" class="btn-nav" id="vocabWritePrev" aria-label="이전 단어">←</button>
+              <button type="button" class="btn-nav" id="vocabWriteNext" aria-label="다음 단어">→</button>
+            </div>
+            <div id="vocabWriteFeedback" class="feedback" hidden></div>
+          </div>
+
+          <div id="vocabCardView" class="vocab-view">
+            <div class="practice-meta-row">
+              <p class="practice-meta" id="vocabCardMeta">01 · Watch and Talk</p>
+              <button type="button" class="star-btn" id="vocabCardStar" aria-label="별표">☆</button>
+            </div>
+            <div class="flashcard-wrap">
+              <div class="flashcard vocab-flashcard" id="vocabFlashcard">
+                <div class="flashcard-face flashcard-front" id="vocabCardFront"></div>
+                <div class="flashcard-face flashcard-back" id="vocabCardBack" hidden></div>
+              </div>
+            </div>
+            <div class="practice-actions">
+              <button type="button" class="btn-secondary" id="vocabFlip">뒤집기</button>
+              <button type="button" class="btn-primary" id="vocabDone">암기 완료</button>
+              <button type="button" class="btn-nav" id="vocabCardPrev">←</button>
+              <button type="button" class="btn-nav" id="vocabCardNext">→</button>
+            </div>
+          </div>
+
+          <div id="vocabListView" class="vocab-view">
+            <div id="vocabList" class="vocab-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 별표 어휘 -->
+      <section id="mode-vocab-star" class="mode-panel">
+        <div class="practice-card">
+          <p class="practice-prompt vocab-star-intro">별표한 어휘만 모아 둔 목록입니다. <strong>학습</strong>을 누르면 어휘 암기로 이동합니다.</p>
+          <div id="vocabStarList" class="vocab-list vocab-star-list"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>진행 상황·XP·콤보는 이 브라우저에 저장됩니다.</p>
+  </footer>
+  </div>
+
+  <script src="vocab-data.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
