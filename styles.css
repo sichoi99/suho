@@ -103,6 +103,27 @@ body {
   color: rgba(255, 255, 255, 0.75);
 }
 
+.main-screen-science {
+  margin: 1rem 0 0;
+}
+
+.main-science-link {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+
+.main-science-link:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
 .app-screen[hidden],
 .main-screen[hidden] {
   display: none !important;

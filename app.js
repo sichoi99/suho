@@ -16,11 +16,17 @@ const VOCAB_VIEW_LABELS = {
   list: "목록",
 };
 
-let progressByPassage = { invention: [], shopper: [] };
-let vocabProgressByPassage = { shopper: { quiz: [], write: [], card: [], list: [] } };
+let progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [] };
+let vocabProgressByPassage = {
+  shopper: { quiz: [], write: [], card: [], list: [] },
+  streetart: { quiz: [], write: [], card: [], list: [] },
+  freedom: { quiz: [], write: [], card: [], list: [] },
+};
 let starsByPassage = {
   invention: { sentences: [], vocab: [] },
   shopper: { sentences: [], vocab: [] },
+  streetart: { sentences: [], vocab: [] },
+  freedom: { sentences: [], vocab: [] },
 };
 
 const state = {
@@ -77,12 +83,19 @@ function loadProgress() {
       if (Array.isArray(data)) {
         progressByPassage.invention = data;
         progressByPassage.shopper = [];
+        progressByPassage.streetart = [];
+        progressByPassage.freedom = [];
       } else {
-        progressByPassage = { invention: data.invention || [], shopper: data.shopper || [] };
+        progressByPassage = {
+          invention: data.invention || [],
+          shopper: data.shopper || [],
+          streetart: data.streetart || [],
+          freedom: data.freedom || [],
+        };
       }
     }
   } catch {
-    progressByPassage = { invention: [], shopper: [] };
+    progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [] };
   }
 }
 
@@ -142,6 +155,8 @@ function loadStars() {
     starsByPassage = {
       invention: { sentences: [], vocab: [] },
       shopper: { sentences: [], vocab: [] },
+      streetart: { sentences: [], vocab: [] },
+      freedom: { sentences: [], vocab: [] },
     };
   }
 }
@@ -215,9 +230,17 @@ function loadVocabProgress() {
     const raw = localStorage.getItem(VOCAB_STORAGE_KEY);
     vocabProgressByPassage = raw
       ? normalizeVocabProgressStore(JSON.parse(raw))
-      : { shopper: emptyVocabProgress() };
+      : {
+          shopper: emptyVocabProgress(),
+          streetart: emptyVocabProgress(),
+          freedom: emptyVocabProgress(),
+        };
   } catch {
-    vocabProgressByPassage = { shopper: emptyVocabProgress() };
+    vocabProgressByPassage = {
+      shopper: emptyVocabProgress(),
+      streetart: emptyVocabProgress(),
+      freedom: emptyVocabProgress(),
+    };
   }
 }
 
@@ -700,19 +723,26 @@ function updateSidebarPanels() {
   if (vocabStarOnlyLabel) vocabStarOnlyLabel.hidden = isVocabStarMode();
 }
 
+function getVocabSections() {
+  const sections = [{ id: "all", title: "전체" }];
+  const seen = new Set();
+  for (const item of getAllVocab()) {
+    if (!seen.has(item.sectionId)) {
+      seen.add(item.sectionId);
+      sections.push({ id: item.sectionId, title: item.sectionTitle });
+    }
+  }
+  return sections;
+}
+
 function renderVocabFilterButtons() {
   const container = document.getElementById("vocabFilterBtns");
   if (!container) return;
-  const sections = [
-    { id: "all", title: "전체" },
-    { id: "watch", title: "Watch and Talk" },
-    { id: "reading", title: "Reading" },
-    { id: "review", title: "Review" },
-  ];
+  const sections = getVocabSections();
   container.innerHTML = sections
     .map(
       (s) =>
-        `<button class="filter-btn${state.vocabSectionFilter === s.id ? " active" : ""}" data-section="${s.id}">${s.title}</button>`
+        `<button class="filter-btn${state.vocabSectionFilter === s.id ? " active" : ""}" data-section="${s.id}">${escapeHtml(s.title)}</button>`
     )
     .join("");
   container.querySelectorAll(".filter-btn").forEach((btn) => {
@@ -1077,7 +1107,10 @@ function updateHeaderForPassage() {
   const titleEl = document.getElementById("appTitle");
   const subEl = document.getElementById("appSubtitle");
   if (titleEl) titleEl.textContent = passage.title;
-  if (subEl) subEl.textContent = `문장 01–${formatId(getPassageSentenceCount())}`;
+  if (subEl) {
+    subEl.textContent =
+      passage.subtitle || `문장 01–${formatId(getPassageSentenceCount())}`;
+  }
   document.title = `${passage.title} — 지문 암기`;
 }
 

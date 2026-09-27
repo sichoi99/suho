@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>110쪽 별의 등급과 밝기 · 표면 온도와 색 — 빈칸 채우기</title>
+  <link rel="stylesheet" href="history.css">
+</head>
+<body class="theme-science">
+  <header class="toolbar">
+    <a class="back-link" href="science.html">← 목록</a>
+    <div class="toolbar-title">
+      <span class="toolbar-label">Science · 110쪽</span>
+      <strong>B 별의 등급과 밝기 · C 별의 표면 온도와 색</strong>
+    </div>
+    <div class="score" id="score">0 / 0</div>
+  </header>
+
+  <div class="controls">
+    <button type="button" class="btn btn-primary" id="checkAll">전체 확인</button>
+    <button type="button" class="btn" id="hintBtn">힌트 (첫 글자)</button>
+    <button type="button" class="btn" id="revealAll">정답 보기</button>
+    <button type="button" class="btn" id="resetAll">다시 풀기</button>
+    <button type="button" class="btn btn-ghost" id="togglePhoto">원본 사진 보기</button>
+  </div>
+
+  <div class="photo-wrap" id="photoWrap" hidden>
+    <img src="images/science-110.png" alt="교재 110쪽 원본 사진">
+  </div>
+
+  <main class="page">
+    <div class="page-head">
+      <span class="chapter-num">06</span>
+      <h1>별</h1>
+    </div>
+    <p class="note-bubble">부등호 빈칸에는 &lt; 또는 &gt; 를 입력하세요.</p>
+
+    <section class="unit">
+      <h2 class="unit-title"><span class="unit-badge">B</span> 별의 등급과 밝기</h2>
+
+      <div class="unit-body">
+        <div class="main-col">
+          <h3>1. 별의 밝기와 거리 관계</h3>
+          <p class="item">• 같은 밝기의 별이라도 거리에 따라 밝기가 다르게 보인다.</p>
+          <p class="item">• 별빛이 비치는 면적은 거리의 제곱에 비례하므로, 단위 면적당 도달하는 빛의 양은 거리의 제곱에 <span class="blank" data-answer="반비례"></span>한다.</p>
+          <p class="item">• 별까지의 거리가 2배, 3배 멀어지면 별의 밝기는 <span class="blank" data-answer="1/4" data-alt="¼"></span>배, <span class="blank" data-answer="1/9"></span>배로 어두워진다.</p>
+          <div class="eq-box">별의 밝기 ∝ 1 / 거리<sup>2</sup></div>
+
+          <h3>2. 별의 등급 <span class="normal">별의 밝기를 숫자로 나타낸 것 → 등급 숫자가 <span class="blank" data-answer="작은" data-alt="작을수록"></span> 별일수록 밝다.❶</span></h3>
+          <p class="item">• 1등급인 별은 6등급인 별보다 약 <span class="blank" data-answer="100"></span>배 밝다. → 1등급 차이마다 약 <span class="blank" data-answer="2.5"></span>배의 밝기 차이가 난다.❷</p>
+          <table class="summary">
+            <tr><th>구분</th><td><strong>겉보기 등급</strong></td><td><strong>절대 등급</strong></td></tr>
+            <tr><th>기준</th><td>우리 눈에 보이는 밝기를 기준으로 정한 등급</td><td>모든 별이 <span class="blank" data-answer="10"></span> pc의 거리에 있다고 가정했을 때의 밝기로 정한 등급</td></tr>
+            <tr><th>특징</th><td>별의 상대적인 밝기를 비교할 수 있다.</td><td>별의 실제 밝기를 비교할 수 있다.</td></tr>
+          </table>
+
+          <h3>3. 겉보기 등급과 절대 등급으로 거리 비교❸</h3>
+          <p class="item">• (겉보기 등급 − 절대 등급) 값이 작을수록 가까이 있는 별이다.</p>
+          <table class="summary">
+            <tr><th>10 pc보다 가까이 있는 별</th><td>겉보기 등급 <span class="blank" data-answer="&lt;"></span> 절대 등급</td></tr>
+            <tr><th>10 pc 거리에 있는 별</th><td>겉보기 등급 = 절대 등급</td></tr>
+            <tr><th>10 pc보다 멀리 있는 별</th><td>겉보기 등급 <span class="blank" data-answer="&gt;"></span> 절대 등급</td></tr>
+          </table>
+        </div>
+
+        <aside class="side-col">
+          <div class="side-note">
+            <p class="side-title">❶ 등급의 범위</p>
+            <p>1등급보다 밝은 별은 0, −1, −2 … 등급으로, 6등급보다 어두운 별은 7, 8, 9 … 등급으로 나타낸다.</p>
+          </div>
+          <div class="side-note">
+            <p class="side-title">❷ 등급 차와 밝기 차</p>
+            <table class="summary">
+              <tr><th>등급 차</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+              <tr><th>밝기 차(배)</th><td>2.5</td><td>≒6.3</td><td>≒16</td><td>≒40</td><td>≒100</td></tr>
+            </table>
+          </div>
+          <div class="side-note">
+            <p class="side-title">❸ 여러 별의 겉보기 등급과 절대 등급</p>
+            <table class="summary">
+              <tr><th>별</th><td>겉보기</td><td>절대</td></tr>
+              <tr><th>태양❹</th><td>−26.7</td><td>+4.8</td></tr>
+              <tr><th>시리우스</th><td>−1.5</td><td>+1.4</td></tr>
+              <tr><th>베가</th><td>+0.0</td><td>+0.5</td></tr>
+              <tr><th>알타이르</th><td>+0.8</td><td>+2.2</td></tr>
+              <tr><th>북극성</th><td>+2.1</td><td>−3.7</td></tr>
+              <tr><th>베텔게우스</th><td>+0.6</td><td>−5.9</td></tr>
+              <tr><th>리겔</th><td>+0.1</td><td>−6.8</td></tr>
+            </table>
+          </div>
+          <div class="side-note">
+            <p class="side-title">❹ 태양</p>
+            <p>지구에서 가장 가까워 가장 밝게 보이지만, 절대 등급은 4.8로 실제로는 그리 밝은 별이 아니다.</p>
+          </div>
+          <div class="side-note">
+            <p class="side-title">용어 체크</p>
+            <p><span class="star">*</span> 등급: 높고 낮음이나 좋고 나쁨 따위의 차이를 여러 층으로 구분한 단계</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="unit">
+      <h2 class="unit-title"><span class="unit-badge">C</span> 별의 표면 온도와 색</h2>
+      <p class="item">• 별의 색은 표면 온도에 따라 다르다. → 표면 온도가 높은 별은 <span class="blank" data-answer="청색" data-alt="파란색"></span>, 표면 온도가 낮은 별은 <span class="blank" data-answer="적색" data-alt="붉은색|빨간색"></span>을 띤다.</p>
+      <div class="star-colors">
+        <div class="label">색</div>
+        <div><span class="star-dot" style="background:#4a7bd8"></span>청색</div>
+        <div><span class="star-dot" style="background:#a9c4f5"></span>청백색</div>
+        <div><span class="star-dot" style="background:#f5f5f5; border:1px solid #ccc"></span>백색</div>
+        <div><span class="star-dot" style="background:#faf0c0"></span>황백색</div>
+        <div><span class="star-dot" style="background:#f0c040"></span>황색</div>
+        <div><span class="star-dot" style="background:#f08a30"></span>주황색</div>
+        <div><span class="star-dot" style="background:#d9481f"></span>적색</div>
+
+        <div class="label">표면 온도</div>
+        <div class="temp-bar"></div>
+
+        <div class="label">예</div>
+        <div>나오스</div>
+        <div>리겔, 스피카</div>
+        <div>시리우스, 베가</div>
+        <div>카노푸스, 프로키온</div>
+        <div>태양, 카펠라</div>
+        <div>아르크투루스, 알데바란</div>
+        <div>베텔게우스, 안타레스</div>
+      </div>
+      <p class="item" style="text-align:center; font-size:0.8rem">높다 ◀────── 표면 온도 ──────▶ 낮다</p>
+    </section>
+
+    <footer class="page-foot">
+      <span class="page-num">110</span> 체크체크 과학 2-2 · VIII. 별과 우주
+    </footer>
+  </main>
+
+  <nav class="page-nav">
+    <a href="science-109.html">← 109쪽</a>
+    <a href="science.html">목록</a>
+    <a href="science-118.html">118쪽 →</a>
+  </nav>
+
+  <div class="done-banner" id="doneBanner" hidden>🎉 모두 맞혔어요!</div>
+
+  <script src="history.js"></script>
+</body>
+</html>
