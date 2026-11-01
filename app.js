@@ -16,17 +16,19 @@ const VOCAB_VIEW_LABELS = {
   list: "목록",
 };
 
-let progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [] };
+let progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [], festivals: [] };
 let vocabProgressByPassage = {
   shopper: { quiz: [], write: [], card: [], list: [] },
   streetart: { quiz: [], write: [], card: [], list: [] },
   freedom: { quiz: [], write: [], card: [], list: [] },
+  festivals: { quiz: [], write: [], card: [], list: [] },
 };
 let starsByPassage = {
   invention: { sentences: [], vocab: [] },
   shopper: { sentences: [], vocab: [] },
   streetart: { sentences: [], vocab: [] },
   freedom: { sentences: [], vocab: [] },
+  festivals: { sentences: [], vocab: [] },
 };
 
 const state = {
@@ -85,17 +87,19 @@ function loadProgress() {
         progressByPassage.shopper = [];
         progressByPassage.streetart = [];
         progressByPassage.freedom = [];
+        progressByPassage.festivals = [];
       } else {
         progressByPassage = {
           invention: data.invention || [],
           shopper: data.shopper || [],
           streetart: data.streetart || [],
           freedom: data.freedom || [],
+          festivals: data.festivals || [],
         };
       }
     }
   } catch {
-    progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [] };
+    progressByPassage = { invention: [], shopper: [], streetart: [], freedom: [], festivals: [] };
   }
 }
 
@@ -157,6 +161,7 @@ function loadStars() {
       shopper: { sentences: [], vocab: [] },
       streetart: { sentences: [], vocab: [] },
       freedom: { sentences: [], vocab: [] },
+      festivals: { sentences: [], vocab: [] },
     };
   }
 }
@@ -234,12 +239,14 @@ function loadVocabProgress() {
           shopper: emptyVocabProgress(),
           streetart: emptyVocabProgress(),
           freedom: emptyVocabProgress(),
+          festivals: emptyVocabProgress(),
         };
   } catch {
     vocabProgressByPassage = {
       shopper: emptyVocabProgress(),
       streetart: emptyVocabProgress(),
       freedom: emptyVocabProgress(),
+      festivals: emptyVocabProgress(),
     };
   }
 }
