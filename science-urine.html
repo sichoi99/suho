@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04 배설 — 오줌 생성 — 빈칸 채우기</title>
+  <link rel="stylesheet" href="history.css">
+</head>
+<body class="theme-science">
+  <header class="toolbar">
+    <a class="back-link" href="science.html">← 목록</a>
+    <div class="toolbar-title">
+      <span class="toolbar-label">Science · 04 배설</span>
+      <strong>오줌 생성 과정</strong>
+    </div>
+    <div class="score" id="score">0 / 0</div>
+  </header>
+
+  <div class="controls">
+    <button type="button" class="btn btn-primary" id="checkAll">전체 확인</button>
+    <button type="button" class="btn" id="hintBtn">힌트 (첫 글자)</button>
+    <button type="button" class="btn" id="revealAll">정답 보기</button>
+    <button type="button" class="btn" id="resetAll">다시 풀기</button>
+    <button type="button" class="btn btn-ghost" id="togglePhoto">원본 사진 보기</button>
+  </div>
+
+  <div class="photo-wrap" id="photoWrap" hidden>
+    <img src="images/science-urine.png" alt="오줌 생성 과정 원본 사진">
+  </div>
+
+  <main class="page">
+    <div class="page-head">
+      <span class="chapter-num">04</span>
+      <h1>배설</h1>
+    </div>
+
+    <section class="unit">
+      <h2 class="unit-title"><span class="unit-badge">2</span> 오줌 생성 과정</h2>
+      <p class="item">오줌은 <span class="blank" data-answer="네프론" data-alt="신원"></span>에서 <span class="blank" data-answer="여과"></span>, <span class="blank" data-answer="재흡수"></span>, <span class="blank" data-answer="분비"></span> 과정을 거쳐 만들어진다.</p>
+
+      <table class="summary">
+        <tr><th>구분</th><td><strong>이동 경로</strong></td><td><strong>이동 물질</strong></td></tr>
+        <tr>
+          <th>여과</th>
+          <td><span class="blank" data-answer="토리" data-alt="사구체"></span> → <span class="blank" data-answer="보먼주머니" data-alt="보먼 주머니"></span></td>
+          <td>
+            <p><span class="blank" data-answer="물"></span>, 요소, <span class="blank" data-answer="포도당"></span>, <span class="blank" data-answer="아미노산"></span>, 무기염류 등 크기가 작은 물질이 여과된다.</p>
+            <p>→ <span class="blank" data-answer="혈구"></span>, <span class="blank" data-answer="단백질"></span>같이 크기가 큰 물질은 여과되지 않는다.</p>
+          </td>
+        </tr>
+        <tr>
+          <th>재흡수</th>
+          <td><span class="blank" data-answer="세뇨관"></span> → <span class="blank" data-answer="모세혈관" data-alt="모세 혈관"></span></td>
+          <td>
+            <p>물, 포도당, 아미노산, 무기염류 등이 재흡수된다.</p>
+            <p>• 포도당, 아미노산: <span class="blank" data-answer="전부" data-alt="모두"></span> 재흡수된다.</p>
+            <p>• 물, 무기염류: <span class="blank" data-answer="대부분"></span> 재흡수된다.</p>
+          </td>
+        </tr>
+        <tr>
+          <th>분비</th>
+          <td>모세혈관 → 세뇨관</td>
+          <td>여과되지 않고 혈액에 남아 있던 <span class="blank" data-answer="노폐물"></span>이 분비된다.</td>
+        </tr>
+      </table>
+
+      <h3>콩팥 동맥 혈액, 여과액, 오줌의 성분 비교</h3>
+      <table class="summary">
+        <tr><th>구분</th><td>혈액(%)</td><td>여과액(%)</td><td>오줌(%)</td><td>이유</td></tr>
+        <tr>
+          <th>단백질</th>
+          <td>7~9</td><td>0</td><td>0</td>
+          <td>여과액에 없다. → 크기가 <span class="blank" data-answer="커서" data-alt="크기 때문에|크기"></span> 여과되지 않기 때문</td>
+        </tr>
+        <tr>
+          <th>포도당</th>
+          <td>0.1</td><td>0.1</td><td>0</td>
+          <td>여과액에는 있지만 오줌에는 없다. → 여과된 후 <span class="blank" data-answer="전부 재흡수" data-alt="모두 재흡수|전부재흡수"></span>되기 때문</td>
+        </tr>
+        <tr>
+          <th>요소</th>
+          <td>0.03</td><td>0.03</td><td>2</td>
+          <td>여과액보다 오줌에서 농도가 크게 <span class="blank" data-answer="높아진다" data-alt="높다"></span>. → 대부분의 <span class="blank" data-answer="물"></span>이 재흡수되어 <span class="blank" data-answer="농축"></span>되기 때문</td>
+        </tr>
+      </table>
+    </section>
+
+    <footer class="page-foot">
+      VI. 동물과 에너지 · 04 배설
+    </footer>
+  </main>
+
+  <nav class="page-nav">
+    <a href="science-excretion.html">← 배설계</a>
+    <a href="science.html">목록</a>
+    <a href="science-cellular.html">세포호흡 →</a>
+  </nav>
+
+  <div class="done-banner" id="doneBanner" hidden>🎉 모두 맞혔어요!</div>
+  <script src="history.js"></script>
+</body>
+</html>
